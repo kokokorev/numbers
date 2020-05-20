@@ -31,6 +31,7 @@ public class VKServer {
 				Message message = vkConnect.getMessage();
 				if (message != null) {
 					ExecutorService exec = Executors.newCachedThreadPool();
+					System.out.println(message);
 					exec.execute(new Messenger(message));
 				}
 			} catch (ClientException e) {

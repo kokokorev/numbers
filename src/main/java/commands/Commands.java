@@ -9,8 +9,6 @@ public class Commands {
 		commands.add(new UnknownCommand("unknown"));
 
 		// TODO: добавить комманды
-		commands.add(new TestCommand("привет"));
-//		commands.add(new Weather("weather"));
 	}
 
 	public static HashSet<Command> getCommands() {

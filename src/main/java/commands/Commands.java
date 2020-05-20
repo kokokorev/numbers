@@ -7,8 +7,7 @@ public class Commands {
 
 	static {
 		commands.add(new UnknownCommand("unknown"));
-
-		// TODO: добавить комманды
+		commands.add(new HelloCommand("привет"));
 	}
 
 	public static HashSet<Command> getCommands() {

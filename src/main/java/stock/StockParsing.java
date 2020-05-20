@@ -18,7 +18,7 @@ public class StockParsing {
 		for (int i = 0; i < 30; i++) {
 			for (int j = 0; j < 9; j++) {
 				if (!td.get(stockIndex).text().equals("")) {
-					stock[i][j] = td.get(stockIndex).text();
+					stock[i][j] = getInformation(td.get(stockIndex).text());
 					stockIndex++;
 				} else {
 					j--;
@@ -27,5 +27,18 @@ public class StockParsing {
 			}
 		}
 		return stock;
+	}
+
+	private String getInformation(String inputString) {
+		String outputString = "";
+		for (String tmp : inputString.split(" ")) {
+			if (tmp.indexOf("Потенциал") == -1) {
+				outputString += tmp + " ";
+			} else {
+				break;
+			}
+		}
+		outputString = outputString.substring(0, outputString.length() - 1);
+		return outputString;
 	}
 }

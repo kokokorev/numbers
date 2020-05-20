@@ -8,6 +8,7 @@ public class Commands {
 	static {
 		commands.add(new UnknownCommand("unknown"));
 		commands.add(new HelloCommand("привет"));
+		commands.add(new NextCommand("следующие"));
 	}
 
 	public static HashSet<Command> getCommands() {

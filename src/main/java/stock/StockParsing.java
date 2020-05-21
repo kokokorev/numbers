@@ -6,6 +6,11 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 
+/*
+ * получаю таблицу со значениями с сайта и каждый элемент закидываю в массив строк,
+ * который отправляю храниться в StockList, чтобы в команде GetStockCommand получить
+ * данные по конкретной компании
+ * */
 public class StockParsing {
 	private String[][] stock = new String[30][9];
 
@@ -35,6 +40,9 @@ public class StockParsing {
 		return stock;
 	}
 
+	/*
+	 * убираю лишную фразу про потенциал из строки с назване компании
+	 *  */
 	private String getName(String inputString) {
 		String outputString = "";
 		for (String tmp : inputString.split(" ")) {

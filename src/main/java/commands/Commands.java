@@ -9,6 +9,7 @@ public class Commands {
 		commands.add(new UnknownCommand("unknown"));
 		commands.add(new HelloCommand("привет"));
 		commands.add(new NextCommand("следующие"));
+		commands.add(new GetStockCommand("GetStock"));
 	}
 
 	public static HashSet<Command> getCommands() {

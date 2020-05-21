@@ -29,6 +29,9 @@ public class StockParsing {
 				}
 			}
 		}
+
+		StockList.setStockList(stock);
+
 		return stock;
 	}
 

@@ -32,6 +32,7 @@ public class HelloCommand extends Command {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
 		return null;
 	}
 

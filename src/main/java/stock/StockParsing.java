@@ -14,14 +14,17 @@ public class StockParsing {
 
 		Elements td = doc.select("td");
 
-		int stockIndex = 1;
+		int stockIndex = 0;
 		for (int i = 0; i < 30; i++) {
 			for (int j = 0; j < 9; j++) {
-				if (!td.get(stockIndex).text().equals("")) {
-					stock[i][j] = getInformation(td.get(stockIndex).text());
+				if (stockIndex % 10 == 0) {
+					stockIndex++;
+				}
+				if (td.get(stockIndex).text().equals("")) {
+					stock[i][j] = "-";
 					stockIndex++;
 				} else {
-					j--;
+					stock[i][j] = getName(td.get(stockIndex).text());
 					stockIndex++;
 				}
 			}
@@ -29,7 +32,7 @@ public class StockParsing {
 		return stock;
 	}
 
-	private String getInformation(String inputString) {
+	private String getName(String inputString) {
 		String outputString = "";
 		for (String tmp : inputString.split(" ")) {
 			if (tmp.indexOf("Потенциал") == -1) {

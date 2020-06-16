@@ -20,6 +20,7 @@ public class StockList {
 	}
 
 	public static void setStock(int line) {
+		stock = "";
 		stock += "\"" + stockList[line][0] + "\"\n\n";
 
 		stock += "Последняя сделка:\n" + stockList[line][1] + " 💸\n\n";

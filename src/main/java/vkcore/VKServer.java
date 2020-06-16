@@ -6,11 +6,13 @@ import com.vk.api.sdk.objects.messages.Message;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.logging.Logger;
 
 /*
  * запуск "сервера" для подключения к группе и отправки комманд на обработку
  * */
 public class VKServer {
+	private static final Logger logger = Logger.getLogger(VKServer.class.getName());
 	public static VKConnect vkConnect;
 
 	static {
@@ -30,6 +32,7 @@ public class VKServer {
 			try {
 				Message message = vkConnect.getMessage();
 				if (message != null) {
+					logger.info("message received:\n" + message + "\n");
 					ExecutorService exec = Executors.newCachedThreadPool();
 					exec.execute(new Messenger(message));
 				}

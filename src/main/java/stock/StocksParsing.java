@@ -11,33 +11,36 @@ import java.io.IOException;
  * который отправляю храниться в StockList, чтобы в команде GetStockCommand получить
  * данные по конкретной компании
  * */
-public class StockParsing {
-	private String[][] stock = new String[30][9];
+public class StocksParsing {
+	private String[][] stocks = new String[30][9];
 
-	public String[][] getStock(int pageNumber) throws IOException {
-		Document doc = Jsoup.connect("https://www.finam.ru/quotes/stocks/?pageNumber=" + pageNumber).get();
+	public String[][] getStocks(int pageNumber) {
+		try {
+			Document doc = Jsoup.connect("https://www.finam.ru/quotes/stocks/?pageNumber=" + pageNumber).get();
 
-		Elements td = doc.select("td");
+			Elements td = doc.select("td");
 
-		int stockIndex = 0;
-		for (int i = 0; i < 30; i++) {
-			for (int j = 0; j < 9; j++) {
-				if (stockIndex % 10 == 0) {
-					stockIndex++;
-				}
-				if (td.get(stockIndex).text().equals("")) {
-					stock[i][j] = "-";
-					stockIndex++;
-				} else {
-					stock[i][j] = getName(td.get(stockIndex).text());
-					stockIndex++;
+			int stockIndex = 0;
+			for (int i = 0; i < 30; i++) {
+				for (int j = 0; j < 9; j++) {
+					if (stockIndex % 10 == 0) {
+						stockIndex++;
+					}
+					if (td.get(stockIndex).text().equals("")) {
+						stocks[i][j] = "-";
+						stockIndex++;
+					} else {
+						stocks[i][j] = getName(td.get(stockIndex).text());
+						stockIndex++;
+					}
 				}
 			}
+
+			StocksList.setStocksList(stocks);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-
-		StockList.setStockList(stock);
-
-		return stock;
+		return stocks;
 	}
 
 	/*

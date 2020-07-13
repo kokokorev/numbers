@@ -3,7 +3,7 @@ package commands.logic;
 import com.vk.api.sdk.objects.messages.Message;
 import commands.Command;
 import commands.UnknownCommand;
-import stock.StockList;
+import stock.StocksList;
 
 import java.util.Collection;
 import java.util.logging.Logger;
@@ -18,11 +18,11 @@ public class CommandDeterminant {
 		String body = message.getBody().toLowerCase();
 		logger.info("message body: " + body + "\n");
 
-		if (StockList.getStockList() != null) {
+		if (StocksList.getStocksList() != null) {
 			for (int i = 0; i < 30; i++) {
-				if (StockList.getStockList()[i][0].toLowerCase().equals(body)) {
+				if (StocksList.getStocksList()[i][0].toLowerCase().equals(body)) {
 					logger.info("user chose " + body + "\n");
-					StockList.setStock(i);
+					StocksList.setStock(i);
 					body = "GetStock";
 				}
 			}
